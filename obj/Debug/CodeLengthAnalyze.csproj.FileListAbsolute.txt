@@ -1,0 +1,16 @@
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\CodeLengthAnalyze.exe.config
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\CodeLengthAnalyze.exe
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\CodeLengthAnalyze.pdb
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.csproj.AssemblyReference.cache
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.csproj.SuggestedBindingRedirects.cache
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.Properties.Resources.resources
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.csproj.GenerateResource.cache
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.csproj.CoreCompileInputs.cache
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.exe
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.pdb
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.csproj.CopyComplete
+C:\Users\megag\RiderProjects\CodeLengthAnalyze\CodeLengthAnalyze\obj\Debug\CodeLengthAnalyze.MenuForm.resources
