@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Windows.Forms;
 
@@ -20,6 +21,7 @@ namespace CodeLengthAnalyze
                 ".h",
                 ".py",
                 ".js",
+                ".txt",
                 ".pas"
             };
             
@@ -31,6 +33,23 @@ namespace CodeLengthAnalyze
 
             //set cs checked
             checkedListBoxTypes.SetItemChecked(0, true);
+        }
+
+        private void buttonAddDirectory_Click(object sender, EventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog();
+            dialog.InitialDirectory = "C:\\Users";
+            dialog.IsFolderPicker = true;
+            dialog.Multiselect = true;
+            dialog.EnsurePathExists = true;
+            
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) return;
+            var items = listBoxDirectories.Items;
+            foreach (var fileName in dialog.FileNames)
+            {
+                if(items.Contains(fileName)) continue;
+                items.Add(fileName);
+            }
         }
 
         private void buttonRemoveDirectory_Click(object sender, EventArgs e)
@@ -47,36 +66,21 @@ namespace CodeLengthAnalyze
             }
         }
 
-        private void buttonAddDirectory_Click(object sender, EventArgs e)
-        {
-            var dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = "C:\\Users";
-            dialog.IsFolderPicker = true;
-            dialog.Multiselect = true;
-            dialog.EnsurePathExists = true;
-            
-            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) return;
-            foreach (var fileName in dialog.FileNames)
-            {
-                listBoxDirectories.Items.Add(fileName);
-            }
-        }
-
         private void buttonStartAnalyze_Click(object sender, EventArgs e)
         {
             if (!ValidateParams()) return;
 
             var statsForm = new StatsForm
             (
-                ObjectCollectionToStringArray(listBoxDirectories.Items), 
-                ObjectCollectionToStringArray(checkedListBoxTypes.Items)
+                ListToStringArray(listBoxDirectories.Items), 
+                ListToStringArray(checkedListBoxTypes.CheckedItems)
             );
 
             //statsForm.Show();
             statsForm.ShowDialog();
         }
 
-        private static string[] ObjectCollectionToStringArray(ListBox.ObjectCollection items)
+        private static string[] ListToStringArray(IList items)
         {
             var result = new string[items.Count];
             for (var i = 0; i < items.Count; i++)

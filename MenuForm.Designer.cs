@@ -41,9 +41,9 @@
             // checkedListBoxTypes
             // 
             this.checkedListBoxTypes.FormattingEnabled = true;
-            this.checkedListBoxTypes.Location = new System.Drawing.Point(15, 167);
+            this.checkedListBoxTypes.Location = new System.Drawing.Point(12, 167);
             this.checkedListBoxTypes.Name = "checkedListBoxTypes";
-            this.checkedListBoxTypes.Size = new System.Drawing.Size(402, 94);
+            this.checkedListBoxTypes.Size = new System.Drawing.Size(402, 169);
             this.checkedListBoxTypes.TabIndex = 0;
             // 
             // listBoxDirectories
@@ -94,7 +94,7 @@
             // 
             // buttonStartAnalyze
             // 
-            this.buttonStartAnalyze.Location = new System.Drawing.Point(15, 267);
+            this.buttonStartAnalyze.Location = new System.Drawing.Point(12, 352);
             this.buttonStartAnalyze.Name = "buttonStartAnalyze";
             this.buttonStartAnalyze.Size = new System.Drawing.Size(402, 30);
             this.buttonStartAnalyze.TabIndex = 6;
@@ -102,11 +102,11 @@
             this.buttonStartAnalyze.UseVisualStyleBackColor = true;
             this.buttonStartAnalyze.Click += new System.EventHandler(this.buttonStartAnalyze_Click);
             // 
-            // S
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 307);
+            this.ClientSize = new System.Drawing.Size(429, 395);
             this.Controls.Add(this.buttonStartAnalyze);
             this.Controls.Add(this.buttonRemoveDirectory);
             this.Controls.Add(this.buttonAddDirectory);
@@ -115,8 +115,11 @@
             this.Controls.Add(this.listBoxDirectories);
             this.Controls.Add(this.checkedListBoxTypes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "MenuForm";
             this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Code Length Analyzer";
             this.ResumeLayout(false);
             this.PerformLayout();
