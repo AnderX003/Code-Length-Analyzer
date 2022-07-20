@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -8,86 +7,30 @@ namespace CodeLengthAnalyze
 {
     public partial class StatsForm : Form
     {
-        private struct ScriptData
-        {
-            public string FileName;
-            public string FullDirectory;
-            public int LinesOfCode;
-            public int EmptyStrings;
-            public int DotComaCount;
-        }
-
-        private readonly string[] directories;
-        private readonly string[] formats;
-        private readonly List<ScriptData> scriptsData = new List<ScriptData>(20);
-        private readonly Func<char, bool> isDotComaChar;
-
         public StatsForm(string[] directories, string[] formats)
         {
             InitializeComponent();
-            this.directories = directories;
-            this.formats = formats;
-            isDotComaChar = c => c == ';';
 
             var startTime = DateTime.Now;
-            Analyze();
-            if (scriptsData == null || scriptsData.Count == 0)
+            var analyzer = new FilesAnalyzer(directories, formats);
+            var scriptsData = analyzer.Analyze(out bool result);
+            if (!result)
             {
-                //Close
+                Load += (_, _) => Close();
                 return;
             }
 
-            scriptsData.Sort((a, b) => a.LinesOfCode >= b.LinesOfCode ? -1 : 1);
-            DrawTotalInfo(DateTime.Now - startTime);
-            DrawScriptsLinesOfCode();
+            scriptsData.Sort((a, b) =>
+            {
+                if (b.LinesOfCode == a.LinesOfCode) return 0;
+                return b.LinesOfCode > a.LinesOfCode ? 1 : -1;
+            });
+            
+            DrawTotalInfo(scriptsData, DateTime.Now - startTime);
+            DrawScriptsLinesOfCode(scriptsData);
         }
 
-        //private async void AnalyzeAsync() => await Task.Run(Analyze);
-
-        private void Analyze()
-        {
-            foreach (var path in directories)
-            foreach (var format in formats)
-                SearchByExtension(path, format);
-        }
-
-        private void SearchByExtension(string rootPath, string extension)
-        {
-            string[] files;
-            try
-            {
-                files = Directory.GetFiles(rootPath, $"*{extension}", SearchOption.AllDirectories);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Error occured:\n{e.Message}");
-                return;
-            }
-
-            foreach (var file in files) AnalyzeFile(file);
-        }
-
-        private void AnalyzeFile(string path)
-        {
-            var fileParams = new ScriptData
-            {
-                FullDirectory = path,
-                FileName = Path.GetFileName(path)
-            };
-
-            var fin = File.OpenText(path);
-            string line;
-            while ((line = fin.ReadLine()) != null)
-            {
-                fileParams.LinesOfCode++;
-                fileParams.DotComaCount += line.Count(isDotComaChar);
-                if (string.IsNullOrWhiteSpace(line)) fileParams.EmptyStrings++;
-            }
-
-            scriptsData.Add(fileParams);
-        }
-
-        private void DrawTotalInfo(TimeSpan analyzeTime)
+        private void DrawTotalInfo(IReadOnlyCollection<ScriptData> scriptsData, TimeSpan analyzeTime)
         {
             var items = listViewTotal.Items;
 
@@ -108,20 +51,24 @@ namespace CodeLengthAnalyze
             items.Add(item);
 
             item = new ListViewItem("Analyze time");
-            item.SubItems.Add(analyzeTime.ToString());
+            item.SubItems.Add(string.Format("{0}:{1}:{2}.{3}",
+                analyzeTime.Hours.ToString(),
+                analyzeTime.Minutes.ToString(),
+                analyzeTime.Seconds.ToString(),
+                analyzeTime.Milliseconds.ToString()));
             items.Add(item);
         }
 
-        private void DrawScriptsLinesOfCode()
+        private void DrawScriptsLinesOfCode(List<ScriptData> scriptsData)
         {
             var items = listViewScriptsDetails.Items;
             foreach (var scriptData in scriptsData)
             {
                 var item = new ListViewItem(scriptData.FileName);
                 item.SubItems.Add(scriptData.LinesOfCode.ToString());
-                item.SubItems.Add(scriptData.FullDirectory);
-                item.SubItems.Add(scriptData.DotComaCount.ToString());
                 item.SubItems.Add(scriptData.EmptyStrings.ToString());
+                item.SubItems.Add(scriptData.DotComaCount.ToString());
+                item.SubItems.Add(scriptData.FullDirectory);
                 items.Add(item);
             }
         }

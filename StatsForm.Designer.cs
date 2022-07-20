@@ -100,35 +100,37 @@ namespace CodeLengthAnalyze
             // filePath
             // 
             this.filePath.Text = "File Path";
-            this.filePath.Width = 348;
+            this.filePath.Width = 450;
             // 
             // linesOfCode
             // 
             this.linesOfCode.Text = "Lines Of Code";
-            this.linesOfCode.Width = 94;
+            this.linesOfCode.Width = 100;
             // 
             // fileName
             // 
             this.fileName.Text = "File Name";
-            this.fileName.Width = 181;
+            this.fileName.Width = 250;
             // 
             // dotComaCount
             // 
             this.dotComaCount.Text = "\';\' count";
+            this.linesOfCode.Width = 100;
             // 
             // emptyStrings
             // 
             this.emptyStrings.Text = "Empty Strings";
-            this.emptyStrings.Width = 87;
+            this.emptyStrings.Width = 100;
             // 
             // title
             // 
             this.title.Text = "Title";
-            this.title.Width = 280;
+            this.title.Width = 300;
             // 
             // value
             // 
             this.value.Text = "Value";
+            this.value.Width = 300;
             // 
             // StatsForm
             // 
