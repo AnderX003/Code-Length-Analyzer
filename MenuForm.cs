@@ -17,12 +17,19 @@ namespace CodeLengthAnalyze
                 ".cshtml",
                 ".cpp",
                 ".c",
+                ".java",
                 ".hpp",
                 ".h",
                 ".py",
                 ".js",
                 ".txt",
-                ".pas"
+                ".pas",
+                ".css",
+                ".html",
+                ".xml",
+                ".xaml",
+                ".fxml",
+                ".*ml"
             };
             
             var items = checkedListBoxTypes.Items;
@@ -76,7 +83,6 @@ namespace CodeLengthAnalyze
                 ListToStringArray(checkedListBoxTypes.CheckedItems)
             );
 
-            //statsForm.Show();
             statsForm.ShowDialog();
         }
 
